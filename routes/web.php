@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::view('login', 'login')->name('login');
+Route::post('/auth', 'App\Http\Controllers\AuthController@authenticate')->name('authentication');
+
+Route::middleware(['auth', 'web'])->group(function () {
+
+    Route::get('/', function () {
+        return view('layout');
+    });
+
+Route::view('home', 'layout')->name('home');
+Route::get('logout','App\Http\Controllers\AuthController@logout')->name('logout');
+Route::resource('category', 'App\Http\Controllers\CategoryController');
+
 });
