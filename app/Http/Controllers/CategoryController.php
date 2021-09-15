@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories=Category::paginate(5);
+        return view('categories')->with('categories',$categories);
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('addcategory');
+
     }
 
     /**
@@ -35,7 +36,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($request->all());
+        return redirect()->back();
     }
 
     /**

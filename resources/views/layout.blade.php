@@ -280,14 +280,8 @@
                 </div>
             </li>
             <li class="active open"><a href="index.html"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Category</span></a>
-                <ul class="ml-menu">
-                    {{-- <li><a href="ec-dashboard.html">Dashboard</a></li> --}}
-                    <li><a href="{{ route('category.create') }}">Add Category</a></li>
-                    <li><a href="">All Categories</a></li>
-                    {{-- <li><a href="">Booked Cars</a></li> --}}
-                    {{-- <li><a href="">Sold Cars</a></li> --}}
-                </ul>
+            <li><a href="{{ route('category.index') }}" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Category</span></a>
+               
             </li><li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Products</span></a>
                 <ul class="ml-menu">
                     {{-- <li><a href="ec-dashboard.html">Dashboard</a></li> --}}
