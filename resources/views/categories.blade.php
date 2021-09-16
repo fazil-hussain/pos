@@ -1,4 +1,7 @@
 @extends('layout')
+@section('style')
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css') }}">
+@endsection
 @section('heading')
     Categories
 @endsection
@@ -24,17 +27,6 @@
                                         <input type="submit" class="btn btn-primary float-right " value="add">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <input type="text" name="" class="form-control" placeholder="Search Category" />
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <button class="btn btn-dark"><i class="zmdi zmdi-search"></i></button>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
 
@@ -44,60 +36,65 @@
             </div>
 
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-12">
                     <div class="card">
-
+                        <div class="header">
+                            <h2><strong>All Categories</strong> </h2>
+                            {{-- <ul class="header-dropdown">
+                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
+                                        data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i
+                                            class="zmdi zmdi-more"></i> </a>
+                                    <ul class="dropdown-menu dropdown-menu-right slideUp">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                    </ul>
+                                </li>
+                                <li class="remove">
+                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                                </li>
+                            </ul> --}}
+                        </div>
                         <div class="body">
-                            <p>All Categories</p>
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>No</th>
                                             <th>Name</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach ($categories as $key=> $item)
+                                    <tfoot>
                                         <tr>
-                                            <th scope="row">{{ $key+1 }}</th>
-                                            <td>{{ $item->name }}</td>
-                                            <td>
-                                                <button class="btn btn-success btn-sm">Update</button>
-                                                <a href="" class="btn btn-danger btn-sm">Delete</a>
-                                            </td>
+                                            <th>No</th>
+                                            <th>Name</th>
+                                            <th>Action</th>
                                         </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @foreach ($categories as $key => $item)
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" id="{{ $item->id }}" class="btn btn-success btn-sm updbtn"
+                                                            data-toggle="modal" data-target="#updatecategoryform">Update</button>
+                                                        <form action="{{ route('category.destroy', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         @endforeach
-
                                     </tbody>
-
                                 </table>
-
                             </div>
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                      <span aria-hidden="true">&laquo;</span>
-                                      <span class="sr-only">Previous</span>
-                                    </a>
-                                  </li>
-                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                      <span aria-hidden="true">&raquo;</span>
-                                      <span class="sr-only">Next</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </nav>
-                            <div>
-
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -105,4 +102,30 @@
         </div>
     </div>
     </div>
+    <!-- Update Category Modal -->
+    <div class="modal fade " id="updatecategoryform" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <form id="updatecategory" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="title" id="smallModalLabel">Update Category</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input class="form-control" name="name" type="text" placeholder="Category Name">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success waves-effect">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+@endsection
+@section('script')
+@include('script');
+   
 @endsection

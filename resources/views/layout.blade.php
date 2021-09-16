@@ -281,7 +281,7 @@
             </li>
             <li class="active open"><a href="index.html"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
             <li><a href="{{ route('category.index') }}" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Category</span></a>
-               
+
             </li><li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Products</span></a>
                 <ul class="ml-menu">
                     {{-- <li><a href="ec-dashboard.html">Dashboard</a></li> --}}

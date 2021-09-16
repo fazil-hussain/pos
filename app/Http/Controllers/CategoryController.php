@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::paginate(5);
+        $categories=Category::all();
         return view('categories')->with('categories',$categories);
     }
 
@@ -71,7 +71,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+      $category->update($request->all());
+      return redirect()->back();
     }
 
     /**
@@ -82,6 +83,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->back();
     }
 }
