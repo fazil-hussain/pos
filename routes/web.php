@@ -29,5 +29,9 @@ Route::middleware(['auth', 'web'])->group(function () {
 Route::view('home', 'layout')->name('home');
 Route::get('logout','App\Http\Controllers\AuthController@logout')->name('logout');
 Route::resource('category', 'App\Http\Controllers\CategoryController');
+Route::resource('product', 'App\Http\Controllers\ProdcutController');
+Route::resource('sale', 'App\Http\Controllers\SaleController');
 
+Route::post('productbycategory','App\Http\Controllers\ProdcutController@productbycategory')->name('productbycategory');
+Route::post('fetchproductdetails','App\Http\Controllers\ProdcutController@fetchproductdetails')->name('fetchproductdetails');
 });

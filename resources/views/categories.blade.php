@@ -62,6 +62,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Name</th>
+                                            <th>Products</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -69,6 +70,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Name</th>
+                                            <th>Products</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -77,16 +79,17 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $item->name }}</td>
+                                                {{-- <td><Button class="btn btn-info">Prodcuts</Button></td> --}}
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button type="button" id="{{ $item->id }}" class="btn btn-success btn-sm updbtn"
+                                                        <button type="button" id="{{ $item->id }}" class="btn btn-success  updbtn"
                                                             data-toggle="modal" data-target="#updatecategoryform">Update</button>
                                                         <form action="{{ route('category.destroy', $item->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
-                                                                class="btn btn-danger btn-sm">Delete</button>
+                                                                class="btn btn-danger ">Delete</button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -127,5 +130,5 @@
 @endsection
 @section('script')
 @include('script');
-   
+
 @endsection
